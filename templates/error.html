@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<div class="revealwrap"><div class="panel reveal"><h1>{{ code }}</h1><p>{{ message }}</p><a class="btn" href="{{ url_for('dashboard') if current_user else url_for('index') }}">Go back</a></div></div>{% endblock %}

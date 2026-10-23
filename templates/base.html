@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COSMATICK SHOP</title>
-</head>
-<body>
-    <h1>COSMATICK SHOP</h1>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}{{ shop_name }}{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head><body>
+<header class="top"><a class="brand" href="{{ url_for('index') }}"><span class="mark">CS</span><span><b>{{ shop_name }}</b><small>Rewards & QR platform</small></span></a>{% if current_user %}<div class="topuser"><span class="tag">{{ current_role|upper }}</span><span>{{ current_user }}</span><form method="post" action="{{ url_for('logout') }}"><button class="btn ghost small">Log out</button></form></div>{% endif %}</header>
+{% if current_user %}<div class="shell"><aside class="sidebar"><div class="navtitle">WORKSPACE</div><a href="{{ url_for('dashboard') }}">▦ Dashboard</a><a href="{{ url_for('customers') }}">♙ Customers</a><a href="{{ url_for('scratch') }}">🎁 Scratch Cards</a><a href="{{ url_for('menu_manage') }}">▤ Digital Menu</a><a href="{{ url_for('reviews') }}">☆ Google Reviews</a><a href="{{ url_for('qr') }}">▦ QR Code & Stand</a><a href="{{ url_for('plans') }}">♢ Plans & Upgrade</a><a href="{{ url_for('settings') }}">⚙ Shop Settings</a>{% if current_role=='admin' %}<div class="navtitle space">ADMIN</div><a href="{{ url_for('admin') }}">♜ Super Admin</a>{% endif %}<div class="sidefoot">COSMATICK SHOP<br><small>Full-stack starter · Payments later</small></div></aside><main class="main">{% else %}<main class="publicmain">{% endif %}
+{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flashes">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}</main>{% if current_user %}</div>{% endif %}<footer class="footer">COSMATICK SHOP · Loyalty, rewards and QR tools</footer></body></html>
